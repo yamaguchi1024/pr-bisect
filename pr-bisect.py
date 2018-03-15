@@ -4,14 +4,16 @@ import sys
 import subprocess
 
 args = sys.argv
-if len(args) < 5:
-  print("python3 pr-bisect.py org_name repo_name <good_PR_id> <bad_PR_id>")
+if len(args) < 6:
+  print("python3 pr-bisect.py org_name repo_name <good_PR_id> <bad_PR_id> test_script.sh")
+  print("If script.sh returns 0, the pr is good and if script.sh returns non-zero, pr is bad")
   sys.exit()
 
 org_name = args[1]
 repo_name = args[2]
 good = int(args[3])
 bad = int(args[4])
+script = args[5]
 
 # git's message is annoying
 FNULL = open(os.devnull, 'w')
@@ -33,10 +35,9 @@ while True:
   e = "git checkout " + merge_sha
   subprocess.Popen(e, shell=True, stdout = FNULL, stderr = subprocess.STDOUT)
 
-  res = input("Type \"Good\" or \"Bad\": ")
-  if res == "Good":
+  res = subprocess.call(script)
+  if res == 0:
+  # it means this pr is good
     good = mid
-  elif res == "Bad":
-    bad = mid
   else:
-    print("Type Good or Bad")
+    bad = mid
