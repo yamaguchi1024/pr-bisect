@@ -6,5 +6,5 @@ This is a tool for doing git bisect based on pull requests. When your repository
 - apt install python3-pip
 - pip3 install PyGithub    
 - git clone https://github.com/yamaguchi1024/pr-bisect
-- python3 pr-bisect.py org_name repo_name <your_github_token> <good_PR_id> <bad_PR_id>
+- python3 pr-bisect.py org_name repo_name <good_PR_id> <bad_PR_id>
 - Type "Good" or "Bad"

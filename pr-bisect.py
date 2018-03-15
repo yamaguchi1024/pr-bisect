@@ -3,23 +3,20 @@ import os
 import sys
 import subprocess
 
-# python3 pr-bisect.py org_name repo_name <your_token> <good_PR_id> <bad_PR_id>
-
 args = sys.argv
-if len(args) < 6:
-  print("python pr-bisect.py org_name repo_name <your_github_token> <good_PR_id> <bad_PR_id>")
+if len(args) < 5:
+  print("python3 pr-bisect.py org_name repo_name <good_PR_id> <bad_PR_id>")
   sys.exit()
 
 org_name = args[1]
 repo_name = args[2]
-token = args[3]
-good = int(args[4])
-bad = int(args[5])
+good = int(args[3])
+bad = int(args[4])
 
 # git's message is annoying
 FNULL = open(os.devnull, 'w')
 
-git = Github(token)
+git = Github()
 repo = git.get_organization(org_name).get_repo(repo_name)
 
 while True:
