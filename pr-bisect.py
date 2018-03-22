@@ -37,7 +37,7 @@ while True:
 
   res = subprocess.call(script)
   if res == 0:
-  # it means this pr is good
-    good = mid
-  else:
+  # it means this pr is bad
     bad = mid
+  else:
+    good = mid

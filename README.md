@@ -7,4 +7,4 @@ This is a tool for doing git bisect based on pull requests. When your repository
 - pip3 install PyGithub    
 - git clone https://github.com/yamaguchi1024/pr-bisect
 - python3 pr-bisect.py org_name repo_name <good_PR_id> <bad_PR_id> test_script.sh
-- // If test_script.sh return 0, it means good. Don't forget to chmod +x to test_script
+- // If test_script.sh return 0, it means bad. Don't forget to chmod +x to test_script
